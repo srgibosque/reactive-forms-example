@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserDTO } from '../../models/user.dto';
-import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -18,9 +18,12 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder){
     this.user = new UserDTO('', '');
 
-    this.email = new FormControl(this.user.email);
+    this.email = new FormControl(this.user.email, Validators.required);
 
-    this.password = new FormControl(this.user.password);
+    this.password = new FormControl(this.user.password, [
+      Validators.required,
+      Validators.minLength(8),
+    ]);
 
     this.loginForm = this.formBuilder.group({
       email: this.email,
