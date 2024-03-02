@@ -10,6 +10,7 @@
     <div *ngIf="email.errors">
       <span style="color: red;" *ngIf="email.errors && (email.touched || email.dirty)">
         <span *ngIf="email.errors['required']">Email is required</span>
+        <span *ngIf="email.errors['invalidKeyword']">This email is reservated</span>
       </span>
     </div>
 

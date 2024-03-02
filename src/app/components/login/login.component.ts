@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { UserDTO } from '../../models/user.dto';
+import { checkInvalidKeyword } from '../../directive/check-reserved-keyword.validator';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,10 @@ export class LoginComponent {
   constructor(private formBuilder: FormBuilder){
     this.user = new UserDTO('', '');
 
-    this.email = new FormControl(this.user.email, Validators.required);
+    this.email = new FormControl(this.user.email, [
+      Validators.required,
+      checkInvalidKeyword(/info@uoc.edu/),
+    ]);
 
     this.password = new FormControl(this.user.password, [
       Validators.required,
