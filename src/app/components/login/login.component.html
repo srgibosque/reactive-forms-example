@@ -1,1 +1,17 @@
-<p>login works!</p>
+<div>
+  <h1>Reactive Form</h1>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input 
+      type="email" 
+      [formControl]="email" 
+      placeholder="Enter your email"
+    >
+
+    <input 
+      type="password" 
+      [formControl]="password" 
+      placeholder="Enter your password"
+    >
+    <button type="submit" [disabled]="!loginForm.valid">Log In</button>
+  </form>
+</div>
